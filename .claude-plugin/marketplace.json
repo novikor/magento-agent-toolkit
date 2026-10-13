@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "novikor",
+  "description": "Magento 2 / Adobe Commerce skills and subagents for Claude Code.",
+  "owner": {
+    "name": "novikor",
+    "url": "https://github.com/novikor"
+  },
+  "allowCrossMarketplaceDependenciesOn": ["caveman"],
+  "plugins": [
+    {
+      "name": "magento-agent-toolkit",
+      "source": "./",
+      "description": "Magento 2 / Adobe Commerce skills and subagents: code review, task implementation, PHPUnit tests, AGENTS.md for Warden projects."
+    }
+  ]
+}

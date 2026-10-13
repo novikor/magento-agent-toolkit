@@ -1,0 +1,12 @@
+{
+  "name": "magento-agent-toolkit",
+  "description": "Magento 2 / Adobe Commerce skills and subagents: orchestrated code review, end-to-end task implementation, PHPUnit test writing and review, AGENTS.md generation for Warden projects.",
+  "author": {
+    "name": "novikor",
+    "url": "https://github.com/novikor"
+  },
+  "repository": "https://github.com/novikor/magento-agent-toolkit",
+  "license": "MIT",
+  "keywords": ["magento", "magento2", "adobe-commerce", "code-review", "phpunit", "warden"],
+  "dependencies": ["caveman@caveman"]
+}
