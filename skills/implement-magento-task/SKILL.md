@@ -143,7 +143,7 @@ within task scope.
 | Helper | Use for | Don't use for |
 |---|---|---|
 | `caveman:cavecrew-investigator` | read-only locate / map sweeps, esp. PHASE 1 | decisions, fixes |
-| `magento-agent-toolkit:minibuilder` | fully specified edit, what + how given, ≤5 files (rename, same pattern in N places, applying a ✅ fix) | anything where it must work out how |
+| `magento-agent-toolkit:minibuilder` | fully specified edit, what + how given (rename, same pattern in N places, applying a ✅ fix) | anything where it must work out how |
 | `caveman:cavecrew-builder` | bounded 1–2 file edit with small judgment | new features, 3+ files, design |
 | `magento-agent-toolkit:magento-tests-writer` | all new / extended PHPUnit tests | production code |
 
@@ -151,7 +151,7 @@ Rules:
 - Delegation is optional. It never replaces your judgment, and you verify every edit it returns.
 - Design and anything needing task context stay with you. Cross-file changes go out only fully specified.
 - Independent helpers → one message, parallel.
-- A helper refuses (`too-big`, `needs-judgment`) → do it yourself or escalate one tier. Don't retry the same helper.
+- A helper refuses (`too-big`, `needs-judgment`, `no-tool`) → do it yourself or escalate one tier. Don't retry the same helper.
 
 ## FALLBACKS
 
