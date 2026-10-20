@@ -102,6 +102,7 @@ Its summary → act on it:
 ### 2.3 Review — `magento-agent-toolkit:review-magento` skill
 Invoke the `magento-agent-toolkit:review-magento` skill on the full task diff, tests included. Follow its STEP 1–4 as written,
 including rating every finding with evidence. Give the review agents the locked-decisions list.
+Print the STEP 4 verdict table **before the first edit**. No table → nothing gets applied.
 
 **Then replace its "stop, ask which to apply" with APPLY POLICY below.** This override is deliberate
 and holds only inside this skill's flow.

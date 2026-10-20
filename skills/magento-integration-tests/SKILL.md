@@ -18,6 +18,10 @@ New integration test → **PHP Attributes + parameterized fixtures**. Never lega
 - Parameterized fixtures **cannot** be driven by docblocks. Attributes only.
 - Never hand-roll entity creation in `setUp()`/private helpers when a `Test/Fixture` class exists.
   Hand-rolling is the legacy smell, not the fixture.
+- Never call a fixture's `apply()` by hand (`$om->create(XFixture::class)->apply($data)`). It skips
+  fixture storage, `revert()` and the fixture-triggered transaction (see ISOLATION) → data leaks.
+- Per-case fixture data is no exception. A data provider can't feed attributes → one test method
+  per case, each with its own `#[DataFixture]`. Fixtures differ = setup differs, so split is correct.
 
 ## ATTRIBUTE TABLE — real signatures from source
 

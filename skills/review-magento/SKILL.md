@@ -98,6 +98,12 @@ Rating requires **evidence**. Read the code the finding points at before judging
 positive" means *you read it and the agent is wrong*, not that it feels off. A rejection with
 no evidence is worse than the false positive it claims to remove.
 
+Finding cites a rule ID and you rate it 🤔 or ❌ → open the rule, quote it, and show from the code
+why it doesn't apply here. "Adds nothing" or "churn" is not evidence.
+
+Findings that contradict each other (one fix needs code another wants deleted) → settle them
+before rating either ✅. The fix for the root defect wins.
+
 Verdicts:
 
 | Verdict | Meaning |

@@ -10,8 +10,8 @@ description: >
   files, cases, what was covered, what was deliberately not, reasoning for each.
   Use for "write tests for X", "cover this diff/class by tests", "add unit/integration
   tests", "test this plugin/observer/repository". Never edits production code.
-tools: [Read, Edit, Write, Grep, Glob, Bash, Skill]
 model: sonnet
+effort: high
 skills:
   - magento-agent-toolkit:magento-integration-tests
   - warden-dev
@@ -100,7 +100,10 @@ an integration test proving only pure logic (→ unit).
   setup, mocks, fixtures or assertions genuinely differ. Provider rows get **string keys** naming the case.
   Providers `public static` on PHPUnit ≥10.
 - Method name = scenario: `testReturnsEmptyWhenQuoteHasNoItems`, not `testExecute2`.
-- Arrange / act / assert readable top-down. No private helper that hides the assertion.
+- Arrange / act / assert readable top-down.
+- No private helper without a real job. SUT built the same way in every test → property set in
+  `setUp()`; the one test needing other ctor args builds its own instance inline. One-line wrapper
+  around a framework call → inline it. No helper that hides the assertion.
 - Assert exact values: `assertSame` for scalars; exact arrays over `assertNotEmpty` / `assertIsArray`.
 - Exceptions: `expectException(Class)` + `expectExceptionMessage(...)`. Never bare `\Exception`.
 - One behavior per test. A failure must name one cause.
@@ -152,6 +155,8 @@ an integration test proving only pure logic (→ unit).
   `RevertibleDataFixtureInterface::revert(DataObject $data): void` when they create entities.
   Copy `Magento\Catalog\Test\Fixture\Category` shape. Look for existing `*/Test/Fixture/*.php` first.
 - Read fixture data: `DataFixtureStorageManager::getStorage()->get('x')`. Cross-reference in data: `'$x.id$'`.
+- Never call a fixture's `apply()` by hand: skips storage, `revert()` and the transaction. Per-case
+  fixture data → one method per case with its own `#[DataFixture]`, not a provider.
 - **Method-level attributes REPLACE class-level ones**, never merge (fixtures, `Cache`, `DbIsolation`, `AppArea`).
 - Fixtures present + isolation not disabled → wrapped in a transaction, rolled back. No fixtures and no
   `#[DbIsolation]` → writes persist. `DbIsolation(false)` → only `revert()` cleans up.
@@ -217,6 +222,8 @@ Never claim green without pasting the real result line (`OK (N tests, M assertio
 - DB: read-only queries allowed (`warden db connect -e "SELECT ..."`) to understand data shape.
 - Don't read or edit anything outside the project dir, except the preloaded skills.
 - No drive-by refactors of existing tests. Report instead.
+- Repetitive mechanical edits (same change in N tests / provider rows, renames) → delegate to
+  `magento-agent-toolkit:minibuilder`. Spell out exact what + how; it refuses judgment calls.
 
 ## Output — final message
 

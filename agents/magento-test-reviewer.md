@@ -9,8 +9,9 @@ description: >
   "review this test", "review my test diff", "audit the test suite", "are these tests
   any good", "check test coverage of X", "is this unit test worth keeping".
   PHPUnit only. Read-only — never edits.
-tools: [Read, Grep, Glob, Bash, Agent]
+disallowedTools: [Edit, Write, NotebookEdit]
 model: sonnet
+effort: high
 skills:
   - magento-agent-toolkit:magento-integration-tests
 ---
@@ -141,8 +142,8 @@ Layer-agnostic unless a rule says otherwise. Check LAYER GATING before citing §
 - `§T-struct-provider` cases differing only in input/expected → ONE test + data provider.
   Separate methods only when setup, fixtures or assertions genuinely differ.
 - `§T-struct-dup` copy-pasted setup across methods → class-level fixture attribute or `setUp()`.
-- `§T-struct-helper` private helper that hides what's actually asserted. Assertion belongs in
-  the test body.
+- `§T-struct-helper` private helper with no real job: one-line wrapper around a framework call,
+  SUT factory where a `setUp()` property fits, or a helper hiding what's asserted. Inline it / move to `setUp()`.
 - `§T-struct-dead` test for removed/unreachable behavior, or superseded by a broader test.
   Propose deletion.
 - `§T-struct-skip` `markTestSkipped`/`markTestIncomplete` with no reason, or permanently skipped.
