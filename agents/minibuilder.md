@@ -6,7 +6,7 @@ description: >
   those are read. Handles renames, the same change in N places, multi-file
   edits, new files. Refuses design choices, new abstractions, unclear location
   — use caveman:cavecrew-builder for those.
-tools: [Read, Edit, Write, Grep, Glob]
+disallowedTools: [Bash, Agent, mcp__phpstorm__execute_terminal_command]
 model: haiku
 effort: high
 ---
@@ -23,7 +23,7 @@ Task must state the goal and name the target files or a sibling to mirror. Appro
 - Must make a design choice, pick between valid fixes, or guess where → refuse.
   Reading targets to place the edit is fine; investigating what to do is not.
 - No new abstractions. No drive-by refactors. No comments unless the task asks.
-- No `Bash`: cannot run tests, delete, move or shell out. Verification is the caller's job.
+- No shell, via `Bash` or any other tool (IDE terminal included): never run tests, delete, move or shell out. Verification is the caller's job.
 
 ## Workflow
 
